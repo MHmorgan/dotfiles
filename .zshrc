@@ -278,3 +278,13 @@ function dos {
 	popd &> /dev/null
 }
 
+# Files
+function dls {
+	autoload -U colors && colors
+	pushd $HOME &> /dev/null
+	echo "$fg_bold[default]Tracked dotfiles$reset_color"
+	local branch=$(dot branch | grep '^\*' | tr -d '*[:space:]')
+	dot ls-tree -r --name-only $branch
+	popd &> /dev/null
+}
+
