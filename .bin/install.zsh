@@ -193,7 +193,13 @@ cd $HOME
 
 # Clone dotfiles repository
 info "Cloning dotfiles repo from github"
-git clone --bare git@github.com:MHmorgan/dotfiles.git .dotfiles || bail "Cloning failed..."
+if confirm "Clone with ssh?"
+then
+	URL=git@github.com:MHmorgan/dotfiles.git
+else
+	URL=https://github.com/MHmorgan/dotfiles.git
+fi
+git clone --bare $URL .dotfiles || bail "Cloning failed..."
 
 alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
