@@ -210,47 +210,11 @@ done
 # Checkout the repo
 info "Checking out dotfiles"
 dot checkout --force
+dot config advice.addIgnoredFile false
 
+bold "Dotfile setup is finished!\n"
 
-# ------------------------------------------------------------------------------
-# Install my applications:
-#
-#	* ExpressVPN
-#	* apache2-utils (htpasswd)
-#	* cargo{,-clippy,-fmt,-miri}
-#	* chezscheme
-#	* clang
-#	* commode (https://github.com/MHmorgan/commode)
-#	* cowsay
-#	* firefox
-#	* flatpack
-#	* fortunes
-#	* g++/gcc
-#	* gcloud
-#	* gdb
-#	* git
-#	* hexyl
-#	* ipython3
-#	* lazygit (https://github.com/jesseduffield/lazygit)
-#	* llvm
-#	* mypy (https://github.com/python/mypy)
-#	* neovim
-#	* pandoc
-#	* pip3
-#	* pylint
-#	* python3
-#	* ripgrep
-#	* rsync
-#	* rustup
-#	* selector (cargo install selector / github:mhmorgan/selector)
-#	* sqlite3
-#	* starship (https://starship.rs/)
-#	* tcl
-#	* thefuck (https://github.com/nvbn/thefuck)
-#	* tkcon
-#	* tmux
-#	* tor browser
-#	* wine
-#	* zsh (oh-my-zsh)
-#
+echo "Next steps:
+	1. Add '<user> ALL=(ALL) NOPASSWD:ALL' to /etc/sudoers
+	2. Run .bin/install-apps.zsh"
 
