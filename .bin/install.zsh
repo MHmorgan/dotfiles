@@ -205,7 +205,7 @@ alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Backup any dotfiles which already exists
 info "Creating backup of existing dotfiles"
-for FILE in $(ls-tree --name-only -r master)
+for FILE in $(dot ls-tree --name-only -r master)
 do
 	if [[ -f "$FILE" ]]; then
 		echo $FILE
