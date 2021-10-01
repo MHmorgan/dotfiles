@@ -254,6 +254,8 @@ sudo apt-get install -q --yes ${=APT_PACKAGES} &> apt-get.log &&
 #	* selector (cargo install selector / github:mhmorgan/selector)
 #	* starship (https://starship.rs/)
 #	* thefuck (https://github.com/nvbn/thefuck)
+#	* Vundle.vim
+#
 
 
 
