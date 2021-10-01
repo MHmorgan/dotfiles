@@ -256,15 +256,16 @@ alias dlg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # Status
 function dst {
 	autoload -U colors && colors
-	cd $HOME
+	pushd $HOME
 	echo "$fg_bold[default]Dotfiles status$reset_color"
 	dot status
+	popd
 }
 
 # Synchronizing
 function dos {
 	autoload -U colors && colors
-	cd $HOME
+	pushd $HOME
 	if [[ -n "$(dot status --short)" ]]
 	then
 		echo "$fg_bold[default]Committing dotfiles updates$reset_color"
@@ -274,5 +275,6 @@ function dos {
 	dot pull &&
 	echo "$fg_bold[default]Pushing our updates to remote$reset_color" &&
 	dot push
+	popd
 }
 
