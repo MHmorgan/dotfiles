@@ -259,35 +259,36 @@ alias dco='git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout'
 # Status
 function dst {
 	autoload -U colors && colors
-	pushd $HOME &> /dev/null
+	[[ $PWD == $HOME ]] || echo "$fg_no_bold[yellow]This command should be run from your home folder$reset_color"
+
 	echo "$fg_bold[default]Dotfiles status$reset_color"
 	dot status
-	popd &> /dev/null
 }
 
 # Synchronizing
 function dos {
 	autoload -U colors && colors
-	pushd $HOME &> /dev/null
+	[[ $PWD == $HOME ]] || echo "$fg_no_bold[yellow]This command should be run from your home folder$reset_color"
+
 	if [[ -n "$(dot status --short)" ]]
 	then
 		echo "$fg_bold[default]Committing dotfiles updates$reset_color"
 		dot commit -va || return 1
 	fi
+
 	echo "$fg_bold[default]Pulling in remote updates$reset_color" &&
 	dot pull &&
 	echo "$fg_bold[default]Pushing our updates to remote$reset_color" &&
 	dot push
-	popd &> /dev/null
 }
 
 # Files
 function dls {
 	autoload -U colors && colors
-	pushd $HOME &> /dev/null
+	[[ $PWD == $HOME ]] || echo "$fg_no_bold[yellow]This command should be run from your home folder$reset_color"
+
 	echo "$fg_bold[default]Tracked dotfiles$reset_color"
 	local branch=$(dot branch | grep '^\*' | tr -d '*[:space:]')
 	dot ls-tree -r --name-only $branch
-	popd &> /dev/null
 }
 
