@@ -21,7 +21,7 @@ function warn {
     fi
 }
 
-function error {
+function err {
     if [[ -t 2 ]]; then
 	    echo $2 "$fg_no_bold[red][!!] $1$reset_color" >&2
     else
@@ -189,73 +189,71 @@ function header {
 #                                                                              #
 ################################################################################
 
-cd $HOME
+bold "Installation requires the following:"
+echo " - Debian derivative (uses apt-get)"
+echo " - No password for sudo"
 
-# Clone dotfiles repository
-info "Cloning dotfiles repo from github"
-git clone --bare git@github.com:MHmorgan/dotfiles.git .dotfiles || bail "Cloning failed..."
-
-alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-# Backup any dotfiles which already exists
-info "Creating backup of existing dotfiles"
-for FILE in $(ls-tree --name-only -r master)
-do
-	if [[ -f "$FILE" ]]; then
-		echo $FILE
-		mv $FILE $FILE~
-	fi
-done
-
-# Checkout the repo
-info "Checking out dotfiles"
-dot checkout --force
-
-bold "Dotfile setup is finished!\n"
-if ! confirm "Do you want to install your applications (requires apt)?"
+if ! confirm "Is this OK?"
 then
+	echo "No problem! Goodbye :)"
 	exit 0
+else
+	echo "Good :) Here we go!"
 fi
 
+APT_PACKAGES=(
+	apache2-utils
+	chezscheme
+	clang
+	cowsay
+	firefox
+	fortunes
+	g++
+	gcc
+	gdb
+	hexyl
+	ipython3
+	llvm
+	neovim
+	pandoc
+	python3-pip
+	pylint
+	python3
+	ripgrep
+	rsync
+	sqlite3
+	sqlite3-doc
+	libsqlite3-dev
+	tcl
+	tkcon
+	tmux
+	torbrowser-launcher
+	wine
+)
+
+info "Installing apt-get packages"
+for PKG in $APT_PACKAGES; do
+	echo $PKG
+done
+info "Logging apt-get output to: apt-get.log"
+sudo apt-get install -q --yes ${=APT_PACKAGES} &> apt-get.log &&
+	info "Successfully installed ${#APT_PACKAGES} packages" ||
+	err "Apt-get returned error code $?"
+
+
 # ------------------------------------------------------------------------------
-# Install my applications:
-#
+# TODO - Install applications:
 #	* ExpressVPN
-#	* apache2-utils (htpasswd)
 #	* cargo{,-clippy,-fmt,-miri}
-#	* chezscheme
-#	* clang
 #	* commode (https://github.com/MHmorgan/commode)
-#	* cowsay
-#	* firefox
 #	* flatpack
-#	* fortunes
-#	* g++/gcc
 #	* gcloud
-#	* gdb
-#	* git
-#	* hexyl
-#	* ipython3
 #	* lazygit (https://github.com/jesseduffield/lazygit)
-#	* llvm
 #	* mypy (https://github.com/python/mypy)
-#	* neovim
-#	* pandoc
-#	* pip3
-#	* pylint
-#	* python3
-#	* ripgrep
-#	* rsync
 #	* rustup
 #	* selector (cargo install selector / github:mhmorgan/selector)
-#	* sqlite3
 #	* starship (https://starship.rs/)
-#	* tcl
 #	* thefuck (https://github.com/nvbn/thefuck)
-#	* tkcon
-#	* tmux
-#	* tor browser
-#	* wine
-#	* zsh (oh-my-zsh)
-#
+
+
 
