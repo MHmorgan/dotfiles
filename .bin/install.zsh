@@ -217,6 +217,9 @@ done
 info "Checking out dotfiles"
 dot checkout
 dot config advice.addIgnoredFile false
+dot config branch.master.remote origin
+dot config branch.master.merge refs/heads/master
+
 
 bold "Dotfile setup is finished!\n"
 
