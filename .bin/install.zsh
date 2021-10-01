@@ -1,5 +1,3 @@
-# Common zsh script functionality.
-
 autoload -U colors && colors  # $fg and $bg
 
 # Echo some text to stdout with bold formatting, of stdout is a terminal.
