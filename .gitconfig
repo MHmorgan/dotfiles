@@ -1,7 +1,18 @@
-# This is Git's per-user configuration file.
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [user]
-name = Magnus Hirth
-email = magnus.hirth@gmail.com
+	name = mahi
+	email = Magnus.Hirth@nordicsemi.no
+[credential]
+	helper = store
+[credential "https://github.com"]
+	username = mhmorgan
+[core]
+	pager = cat
+	editor = nvim
 [init]
 	defaultBranch = master
 [pull]

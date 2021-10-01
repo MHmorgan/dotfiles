@@ -7,7 +7,7 @@
 " ------------------------------------------------------------------------------
 " General
 
-colorscheme pablo
+colorscheme desert
 
 set nocompatible
 

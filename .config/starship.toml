@@ -1,8 +1,19 @@
 [character]
-symbol = "〉"
-# error_symbol = "✘ "
-error_symbol = "⤫ "
-use_symbol_for_status = true
+success_symbol = "[〉](bold green)"
+error_symbol = "[✕ ](bold red)"
 
-[gcloud]
+[username]
 disabled = true
+
+[python]
+disabled = false
+
+[custom.foo]
+command = "echo ${VC_WORKSPACE/*\\//}"
+when = """ test -n "$VC_WORKSPACE" && [[ "$VC_WORKSPACE" != "$PWD" ]] """
+format = "with ws [$output]($style) "
+
+[git_status]
+ahead = "↑"
+behind = "↓"
+diverged = "↕"

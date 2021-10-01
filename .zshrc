@@ -1,43 +1,49 @@
 # vim: filetype=zsh:
 
-# Application list:
-#	* ExpressVPN
-#	* apache2-utils (htpasswd)
-#	* cargo{,-clippy,-fmt,-miri}
-#	* chezscheme
-#	* clang
-#	* commode (https://github.com/MHmorgan/commode)
-#	* cowsay
-#	* firefox
-#	* flatpack
-#	* fortunes
-#	* g++/gcc
-#	* gcloud
-#	* gdb
-#	* git
-#	* hexyl
-#	* ipython3
-#	* lazygit (https://github.com/jesseduffield/lazygit)
-#	* llvm
-#	* mypy (https://github.com/python/mypy)
-#	* neovim
-#	* pandoc
-#	* pip3
-#	* pylint
-#	* python3
-#	* ripgrep
-#	* rsync
-#	* rustup
-#	* selector (cargo install selector / github:mhmorgan/selector)
-#	* sqlite3
-#	* starship (https://starship.rs/)
-#	* tcl
-#	* thefuck (https://github.com/nvbn/thefuck)
-#	* tkcon
-#	* tmux
-#	* tor browser
-#	* wine
-#	* zsh (oh-my-zsh)
+################################################################################
+#                                                                              #
+# Nordic setup
+#                                                                              #
+################################################################################
+
+fpath=(${HOME}/dogit/completion/zsh $fpath)
+autoload -Uz compinit
+compinit 
+
+# Case-insensitive command line completion
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Menu when selecting multiple items
+zstyle ':completion:*' menu select
+
+setopt share_history
+setopt histignorealldups
+
+export PATH=""
+export PATH=$PATH:.:/usr/bin:/bin/:/usr/X11R6/bin
+source /cad/gnu/modules/modules-tcl/init/zsh
+module load common_setup
+module use /cad/gnu/modules/modulefiles2.0
+
+export PRINTER="xeroxtrh1"
+export SVN_EDITOR="vi"
+module load gnutools/grid-engine
+qsubcall(){
+  qsub -N "mahi" -M "mahi@nordicsemi.no" -cwd -V -j y -o qsublog_\$JOB_ID.log -b y -S /bin/sh $*
+  
+}
+qrsubcall(){
+  qrsh -N "mahi" -now no -pty yes -cwd -V $*
+}
+
+# Python 3.8 module
+module switch misctools/anaconda/3-2020.07
+
+# Copied, and modified, content of /pro/dogit/training/dogit-support/shell/source_dogit_env_zsh
+module load misctools/git/2.19.1
+export PATH=/pri/$USER/dogit:$PATH
+source /pro/dogit/training/dogit-support/shell/source_dogit_aliases_zsh
+
 
 ################################################################################
 #                                                                              #
@@ -46,7 +52,7 @@
 ################################################################################
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/m/.oh-my-zsh"
+export ZSH="/pri/mahi/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
@@ -57,24 +63,18 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	cargo
-	chucknorris
 	git
-	lol
 	pip
 	pylint
 	python
 	ripgrep
 	rust
 	rustup
-	thefuck
+	stewie
 	tmux
-	vscode
-	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
-
-export EDITOR='vim'
 
 
 ################################################################################
@@ -83,45 +83,34 @@ export EDITOR='vim'
 #                                                                              #
 ################################################################################
 
-export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/scripts"
+# Needed after started using PuTTY. If not 'Could not open a connection
+# to your authonticantion agent' where printed when running dogit.
+# eval $(ssh-agent -s)
 
-# Cargo bin
+export MAHI="/work/mahi"
+export EMAIL="magnus.hirth@nordicsemi.no"
+
+# User specific commands should have top priority
+export PATH="$HOME/bin/:$PATH"
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/local/bin:$HOME/scripts:$MAHI/bin:$MAHI/scripts"
+export MANPATH="$MANPATH:/work/mahi/man"
+
+# Cssc tools
+export PATH="$PATH:/cad/caduser/tools/cssc/bin"
+
+# Cargo binaries
 export PATH="$PATH:$HOME/.cargo/bin"
 
-# Nim bin
-export PATH="$PATH:$HOME/.nimble/bin"
+# Chibi scheme
+export PATH="$PATH:/pri/mahi/chibi/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/pri/mahi/chibi/lib"
 
-# Dart & flutter bin
-export PATH="$PATH:/usr/lib/dart/bin:$HOME/flutter/bin"
-
-# Go bin & GOPATH
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$PATH:$GOROOT/bin:$GOBIN"
-
-function goinstall() {
-	test -n "$GOROOT" || { echo "Missing GOROOT" ; return 1 }
-	test -n "$1" || { echo "Missing go tar file." ; return 1 }
-	local SRC=$1
-	sudo rm -rf $GOROOT
-	sudo tar -C ${GOROOT/\/go/} -xzf $SRC
-}
-
-# PostgreSQL bin
-export PATH="$PATH:/usr/lib/postgresql/13/bin"
-
+# Awesome prompt <3
 eval "$(starship init zsh)"
-# export SPACESHIP_PROMPT_ADD_NEWLINE=false
-# export SPACESHIP_PROMPT_SEPARATE_LINE=false
 
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/m/google-cloud-sdk/path.zsh.inc' ]; then . '/home/m/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/m/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/m/google-cloud-sdk/completion.zsh.inc'; fi
-
+# Make ls colors nice in xfce terminal
+eval $(dircolors -b)
 
 if type nvim &>/dev/null
 then 
@@ -142,7 +131,10 @@ eval $(thefuck --alias)
 #                                                                              #
 ################################################################################
 
-alias ll="ls -l"
+alias q=qsubcall
+alias qr=qrsubcall
+alias vim='/usr/bin/vim -X'
+alias ll="ls -lh"
 alias l1="ls -1"
 alias less="less -r"
 
@@ -163,6 +155,16 @@ alias cobd='commode boilerplate download'
 alias cobi='commode boilerplate install'
 alias cobu='commode boilerplate upload'
 
+alias vc='eval `dogit vc zsh`'
+alias rw='dogit rw -s . ; cd `pwd`'
+alias tools='echo "Loading the following tools:" ; dogit tools -v ; eval `dogit tools -l`' 
+alias sim='$VC_WORKSPACE/methodology/DesignKit/scripts/notools/gridsim/gridsim.py'
+
+alias work=mahi
+alias cdvc='cd $VC_WORKSPACE && pwd'
+alias cdcssc='cd /cad/caduser/tools/cssc && pwd'
+alias cddelivery='cd /pro/haltium4460/delivery/digital/ && pwd'
+
 
 ################################################################################
 #                                                                              #
@@ -171,59 +173,111 @@ alias cobu='commode boilerplate upload'
 ################################################################################
 
 function cdl {
-	cd $1
+	cd $1 &&
 	ll
 }
 
 
 function cdls {
-	cd $1
+	cd $1 &&
 	ls
 }
 
 function home {
 	echo $HOME
-	cd $HOME
+	cd $HOME &&
 	ll
 }
 
-# Generate ls and cd functions for all the project directories.
-if [[ -d $HOME/projects ]]
-then
-	for mydir in $(ls $HOME/projects)
-	do
-		eval "function cd$mydir () {
-			local DIR=$HOME/projects/$mydir/\$1
-			echo \$DIR
-			cd \$DIR
-			ll
-		}"
-
-		eval "function ls$mydir () {
-			local DIR=$HOME/projects/$mydir/\$1
-			echo \$DIR
-			ll \$DIR
-		}"
-	done
-fi
+function mahi {
+	echo /work/mahi
+	cd /work/mahi &&
+	ll
+}
 
 if type selector &>/dev/null
 then
 	function goto {
 		mypaths=(
-			$HOME/{Documents,Downloads,projects,scripts,lib}
-			$HOME/Documents/*(/)
+			$HOME/{Documents,scripts,lib,projects,cosmic}
 			$HOME/projects/*(/)
-			$HOME/projects/*/*(/)
+			/pro/*/work/mahi
+			/deliverables/*/digital/ApplicationMcu
 		)
+		#
+		# Add workspace directories only if VC_WORKSPACE is set
+		#
+		if [[ -n "$VC_WORKSPACE" ]]
+		then
+			for TMP in $(echo \
+				$VC_WORKSPACE/products/*/*/hdn/ApplicationMcu/{syn,lec,vclp} \
+				$VC_WORKSPACE/products/*/*/tools/cosmic/*(/) \
+				$VC_WORKSPACE/products/*/*/abc \
+				$VC_WORKSPACE/platforms/*/blocks/ApplicationMcu/{dft,upf})
+			do
+				mypaths+=(${TMP#$VC_WORKSPACE/})
+			done
+		fi
 		local SEL=$(selector ${=mypaths})
 		[[ -n "$SEL" ]] || return
-		local DIR=$SEL/$1
+		#
+		# Relative paths must be processed before changing directories.
+		#
+		if [[ $SEL =~ "^/" ]]; then
+			local DIR=$SEL/$1
+		else
+			local DIR=$VC_WORKSPACE/$SEL/$1
+		fi
 		echo $DIR
 		cd $DIR
 		ll
 	}
 fi
+
+
+# Generate ls and cd for personal directories
+for mydir in \
+	$HOME/cosmic \
+	$HOME/projects \
+	$HOME/projects/louis \
+	$HOME/projects/stewie \
+	$HOME/projects/tammy \
+	$HOME/scripts 
+do
+	myname=${mydir##*/}
+	eval "function cd$myname {
+		local DIR=$mydir/\$1
+		echo \$DIR
+		cd \$DIR
+		ll
+	}"
+
+	eval "function ls$myname {
+		local DIR=$mydir/\$1
+		echo \$DIR
+		ll \$DIR
+	}"
+done
+
+
+# Generate ls and cd for project work directories
+for mydir in $(echo /hizz/pro/*/work/mahi)
+do
+	myname=${${mydir#/hizz/pro/}%/work/mahi}
+	eval "function cd$myname {
+		local DIR=$mydir/\$1
+		echo \$DIR
+		cd \$DIR
+		ll
+	}"
+
+	eval "function ls$myname {
+		local DIR=$mydir/\$1
+		echo \$DIR
+		ll \$DIR
+	}"
+done
+
 
 function backup {
 	local src=$1
@@ -236,7 +290,6 @@ function backup {
 
 	cp -uvpr $src $src~
 }
-
 
 ################################################################################
 #                                                                              #
@@ -256,16 +309,16 @@ alias dlg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # Status
 function dst {
 	autoload -U colors && colors
-	pushd $HOME > /dev/null
+	pushd $HOME &> /dev/null
 	echo "$fg_bold[default]Dotfiles status$reset_color"
 	dot status
-	popd > /dev/null
+	popd &> /dev/null
 }
 
 # Synchronizing
 function dos {
 	autoload -U colors && colors
-	pushd $HOME > /dev/null
+	pushd $HOME &> /dev/null
 	if [[ -n "$(dot status --short)" ]]
 	then
 		echo "$fg_bold[default]Committing dotfiles updates$reset_color"
@@ -275,6 +328,6 @@ function dos {
 	dot pull &&
 	echo "$fg_bold[default]Pushing our updates to remote$reset_color" &&
 	dot push
-	popd > /dev/null
+	popd &> /dev/null
 }
 
