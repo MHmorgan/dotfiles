@@ -215,7 +215,7 @@ done
 
 # Checkout the repo
 info "Checking out dotfiles"
-dot checkout --force
+dot checkout
 dot config advice.addIgnoredFile false
 
 bold "Dotfile setup is finished!\n"
