@@ -1,4 +1,8 @@
 " Vim config - Magnus Hirth
+"
+" https://developer.ibm.com/technologies/linux/articles/l-vim-script-1/
+" https://devhints.io/vimscript
+" https://vim.rtorr.com/
 
 " ------------------------------------------------------------------------------
 " General
@@ -21,9 +25,14 @@ set smarttab
 
 set path+=**
 
+set modeline
+
 autocmd Filetype c setlocal ts=4 sw=4 expandtab
-autocmd Filetype m4 setlocal ts=4 sw=4 expandtab
 autocmd Filetype dart setlocal ts=2 sw=2 expandtab
+autocmd Filetype m4 setlocal ts=4 sw=4 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 expandtab
+autocmd Filetype tcl setlocal ts=2 sw=2 expandtab
+autocmd Filetype xml setlocal ts=2 sw=2 expandtab
 
 " ------------------------------------------------------------------------------
 " Small helpers
@@ -53,6 +62,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
 
 Plugin 'arcticicestudio/nord-vim'
 
