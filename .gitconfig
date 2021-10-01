@@ -1,8 +1,14 @@
-# This is Git's per-user configuration file.
 [user]
-name = Magnus Hirth
-email = magnus.hirth@gmail.com
+	name = Magnus Hirth
+	email = magnus.hirth@gmail.com
 [init]
 	defaultBranch = master
+[credential]
+	helper = store
+[credential "https://github.com"]
+	username = mhmorgan
+[core]
+	pager = cat
+	editor = nvim
 [pull]
 	rebase = false
