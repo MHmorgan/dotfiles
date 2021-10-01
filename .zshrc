@@ -306,6 +306,9 @@ alias doa='git --git-dir=$HOME/.dotfiles --work-tree=$HOME add --force'
 # Lazygit
 alias dlg='lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+# Checkout
+alias dco='git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout'
+
 # Status
 function dst {
 	autoload -U colors && colors
