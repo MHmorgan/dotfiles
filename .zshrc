@@ -144,6 +144,8 @@ eval $(thefuck --alias)
 
 alias ll="ls -l"
 alias l1="ls -1"
+alias lsd="ls -d *(/)"
+alias lld="ls -lhd *(/)"
 alias less="less -r"
 
 if type nvim &>/dev/null
