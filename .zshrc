@@ -6,6 +6,16 @@
 #                                                                              #
 ################################################################################
 
+# If starting a shell on a vnc server, just hijack the session
+# and ssh into a cad server instead.
+if [[ "$(hostname)" =~ "vncsrv[0-9]+.nordicsemi.no" ]]
+then
+	MYCADSRV=cad10.nordicsemi.no
+	echo "It looks like you are on a vnc server ($(hostname))"
+	echo "Moving to a cad server instead ($MYCADSRV)"
+	ssh -Y $USER@$MYCADSRV
+fi
+
 fpath=(${HOME}/dogit/completion/zsh $fpath)
 autoload -Uz compinit
 compinit 
