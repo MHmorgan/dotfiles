@@ -74,6 +74,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
 	cargo
 	git
+	lol
 	pip
 	pylint
 	python
@@ -81,6 +82,7 @@ plugins=(
 	rust
 	rustup
 	stewie
+	thefuck
 	tmux
 	zsh-autosuggestions
 )
@@ -177,6 +179,9 @@ alias work=mahi
 alias cdvc='cd $VC_WORKSPACE && pwd'
 alias cdcssc='cd /cad/caduser/tools/cssc && pwd'
 alias cddelivery='cd /pro/haltium4460/delivery/digital/ && pwd'
+
+alias gitaliases='$EDITOR $HOME/.oh-my-zsh/plugins/git/README.md'
+alias lolaliases='$EDITOR $HOME/.oh-my-zsh/plugins/lol/README.md'
 
 
 ################################################################################
