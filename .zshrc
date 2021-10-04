@@ -165,8 +165,9 @@ alias cobd='commode boilerplate download'
 alias cobi='commode boilerplate install'
 alias cobu='commode boilerplate upload'
 
-alias gitaliases='$EDITOR .oh-my-zsh/plugins/git/README.md'
-alias lolaliases='$EDITOR .oh-my-zsh/plugins/lol/README.md'
+alias gitaliases='$EDITOR $HOME/.oh-my-zsh/plugins/git/README.md'
+alias lolaliases='$EDITOR $HOME/.oh-my-zsh/plugins/lol/README.md'
+
 
 ################################################################################
 #                                                                              #
