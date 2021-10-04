@@ -74,6 +74,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
 	cargo
 	git
+	lol
 	pip
 	pylint
 	python
@@ -81,6 +82,7 @@ plugins=(
 	rust
 	rustup
 	stewie
+	thefuck
 	tmux
 	zsh-autosuggestions
 )
