@@ -180,6 +180,9 @@ alias cdvc='cd $VC_WORKSPACE && pwd'
 alias cdcssc='cd /cad/caduser/tools/cssc && pwd'
 alias cddelivery='cd /pro/haltium4460/delivery/digital/ && pwd'
 
+alias gitaliases='$EDITOR .oh-my-zsh/plugins/git/README.md'
+alias lolaliases='$EDITOR .oh-my-zsh/plugins/lol/README.md'
+
 
 ################################################################################
 #                                                                              #
