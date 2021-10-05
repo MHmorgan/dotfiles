@@ -1,5 +1,7 @@
 # vim: filetype=zsh:
 
+export PATH=".:$HOME/bin/:$HOME/.local/bin:$HOME/local/bin:$HOME/scripts:/usr/bin:/bin/:/usr/X11R6/bin"
+
 ################################################################################
 #                                                                              #
 # Nordic setup
@@ -29,8 +31,6 @@ zstyle ':completion:*' menu select
 setopt share_history
 setopt histignorealldups
 
-export PATH=""
-export PATH=$PATH:.:/usr/bin:/bin/:/usr/X11R6/bin
 source /cad/gnu/modules/modules-tcl/init/zsh
 module load common_setup
 module use /cad/gnu/modules/modulefiles2.0
@@ -51,7 +51,7 @@ module switch misctools/anaconda/3-2020.07
 
 # Copied, and modified, content of /pro/dogit/training/dogit-support/shell/source_dogit_env_zsh
 module load misctools/git/2.19.1
-export PATH=/pri/$USER/dogit:$PATH
+export PATH="$PATH:/pri/$USER/dogit"
 source /pro/dogit/training/dogit-support/shell/source_dogit_aliases_zsh
 
 
@@ -103,10 +103,6 @@ source $ZSH/oh-my-zsh.sh
 export MAHI="/work/mahi"
 export EMAIL="magnus.hirth@nordicsemi.no"
 
-# User specific commands should have top priority
-export PATH="$HOME/bin/:$PATH"
-
-export PATH="$PATH:$HOME/.local/bin:$HOME/local/bin:$HOME/scripts:$MAHI/bin:$MAHI/scripts"
 export MANPATH="$MANPATH:/work/mahi/man"
 
 # Cssc tools
