@@ -318,9 +318,9 @@ function gitaliases {
 	# Look through all aliases or grep for a some specific aliases
 	if (( $# < 1 ))
 	then
-		awk -F '|' $command $file | sort | less
+		awk -F '|' $command $file | less
 	else
-		awk -F '|' $command $file | sort | grep $@
+		awk -F '|' $command $file | grep $@
 	fi
 }
 
