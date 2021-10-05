@@ -180,7 +180,6 @@ alias cdvc='cd $VC_WORKSPACE && pwd'
 alias cdcssc='cd /cad/caduser/tools/cssc && pwd'
 alias cddelivery='cd /pro/haltium4460/delivery/digital/ && pwd'
 
-alias gitaliases='$EDITOR $HOME/.oh-my-zsh/plugins/git/README.md'
 alias lolaliases='$EDITOR $HOME/.oh-my-zsh/plugins/lol/README.md'
 
 
@@ -308,6 +307,27 @@ function backup {
 
 	cp -uvpr $src $src~
 }
+
+function gitaliases {
+	local file=$HOME/.oh-my-zsh/plugins/git/README.md
+	local command='
+		$2 ~ /^\s*g/ {
+			gsub(/^\s*/, "", $2)
+			gsub(/^\s*/, "", $3)
+			gsub(/\s*$/, "", $2)
+			gsub(/\s*$/, "", $3)
+			print $2 "\t" $3
+		}
+	'
+	# Look through all aliases or grep for a some specific aliases
+	if (( $# < 1 ))
+	then
+		awk -F '|' $command $file | sort | less
+	else
+		awk -F '|' $command $file | sort | grep $@
+	fi
+}
+
 
 ################################################################################
 #                                                                              #
