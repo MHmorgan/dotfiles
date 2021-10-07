@@ -244,11 +244,9 @@ function backup {
 function gitaliases {
 	local file=$HOME/.oh-my-zsh/plugins/git/README.md
 	local command='
-		$2 ~ /^\s*g/ {
-			gsub(/^\s*/, "", $2)
-			gsub(/^\s*/, "", $3)
-			gsub(/\s*$/, "", $2)
-			gsub(/\s*$/, "", $3)
+		$2 ~ /^ *g/ {
+			gsub(/(^ *| *$)/, "", $2)
+			gsub(/(^ *| *$)/, "", $3)
 			print $2 "\t" $3
 		}
 	'
