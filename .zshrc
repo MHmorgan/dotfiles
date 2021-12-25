@@ -92,7 +92,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.nimble/bin"
 
 # Dart & flutter bin
-export PATH="$PATH:/usr/lib/dart/bin:$HOME/flutter/bin"
+export PATH="$PATH:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/.pub-cache/bin"
 
 # Go bin & GOPATH
 export GOROOT="/usr/local/go"
