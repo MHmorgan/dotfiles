@@ -220,9 +220,9 @@ then
 			$HOME/projects/*(/)
 			$HOME/projects/*/*(/)
 		)
-		local SEL=$(selector ${=mypaths})
+		local SEL=$(selector ${=mypaths} -af "$*")
 		[[ -n "$SEL" ]] || return
-		local DIR=$SEL/$1
+		local DIR=$SEL
 		echo $DIR
 		cd $DIR
 		ll
