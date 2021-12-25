@@ -235,15 +235,15 @@ then
 				mypaths+=(${TMP#$VC_WORKSPACE/})
 			done
 		fi
-		local SEL=$(selector ${=mypaths})
+		local SEL=$(selector ${=mypaths} -af "$*")
 		[[ -n "$SEL" ]] || return
 		#
 		# Relative paths must be processed before changing directories.
 		#
 		if [[ $SEL =~ "^/" ]]; then
-			local DIR=$SEL/$1
+			local DIR=$SEL
 		else
-			local DIR=$VC_WORKSPACE/$SEL/$1
+			local DIR=$VC_WORKSPACE/$SEL
 		fi
 		echo $DIR
 		cd $DIR
