@@ -56,7 +56,6 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	cargo
 	chucknorris
 	git
 	lol
@@ -65,7 +64,6 @@ plugins=(
 	python
 	ripgrep
 	rust
-	rustup
 	thefuck
 	tmux
 	vscode
