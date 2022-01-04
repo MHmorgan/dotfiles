@@ -12,10 +12,14 @@ export PATH=".:$HOME/bin/:$HOME/.local/bin:$HOME/local/bin:$HOME/scripts:/usr/bi
 # and ssh into a cad server instead.
 if [[ "$(hostname)" =~ "vncsrv[0-9]+.nordicsemi.no" ]]
 then
-	MYCADSRV=cad10.nordicsemi.no
-	echo "It looks like you are on a vnc server ($(hostname))"
-	echo "Moving to a cad server instead ($MYCADSRV)"
-	ssh -Y $USER@$MYCADSRV
+    vared -cp "SSH into a cad server? (Y/n) " INP
+    if [[ -z "$INP" || "$INP" =~ '^\s*[Yy](es?)?\s*$' ]]
+	then
+		MYCADSRV=cad10.nordicsemi.no
+		echo "It looks like you are on a vnc server ($(hostname))"
+		echo "Moving to a cad server instead ($MYCADSRV)"
+		ssh -Y $USER@$MYCADSRV
+	fi
 fi
 
 fpath=(${HOME}/dogit/completion/zsh $fpath)
