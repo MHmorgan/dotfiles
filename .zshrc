@@ -224,7 +224,8 @@ then
 		[[ -n "$SEL" ]] || return
 		local DIR=$SEL
 		echo $DIR
-		cd $DIR
+		# -P use the physical directory structure instead of following symbolic links
+		cd -P $DIR
 		ll
 	}
 fi
