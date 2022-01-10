@@ -219,6 +219,7 @@ then
 			$HOME/projects/*(/)
 			/pro/*/work/mahi
 			/deliverables/*/digital/ApplicationMcu
+			/datastore01/jenkins01/node-simsrv*/workspace/Lilium/AppMcu_SYN/lastSuccessfulBuild*
 		)
 		#
 		# Add workspace directories only if VC_WORKSPACE is set
