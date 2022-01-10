@@ -165,6 +165,8 @@ alias cobu='commode boilerplate upload'
 
 alias lolaliases='$EDITOR $HOME/.oh-my-zsh/plugins/lol/README.md'
 
+alias pyvenv='python3 -m venv --upgrade-deps venv'
+
 
 ################################################################################
 #                                                                              #
