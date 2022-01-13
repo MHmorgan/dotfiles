@@ -56,6 +56,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+	brew
 	chucknorris
 	git
 	lol
@@ -83,16 +84,24 @@ export EDITOR='vim'
 
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/scripts"
 
+#
 # Cargo bin
+#
 export PATH="$PATH:$HOME/.cargo/bin"
 
+#
 # Nim bin
+#
 export PATH="$PATH:$HOME/.nimble/bin"
 
+#
 # Dart & flutter bin
+#
 export PATH="$PATH:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/.pub-cache/bin"
 
+#
 # Go bin & GOPATH
+#
 export GOROOT="/usr/local/go"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
@@ -106,8 +115,25 @@ function goinstall() {
 	sudo tar -C ${GOROOT/\/go/} -xzf $SRC
 }
 
+#
 # PostgreSQL bin
+#
 export PATH="$PATH:/usr/lib/postgresql/13/bin"
+
+#
+# Homebrew variable setup
+#
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+#
+# Python homebrew setup
+#
+PYTHON_VERSION='3.10'
+export PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/bin:$PATH"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/include"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib/pkgconfig"
+
 
 eval "$(starship init zsh)"
 # export SPACESHIP_PROMPT_ADD_NEWLINE=false
