@@ -181,8 +181,9 @@ alias cddelivery='cd /pro/haltium4460/delivery/digital/ && pwd'
 
 alias lolaliases='$EDITOR $HOME/.oh-my-zsh/plugins/lol/README.md'
 
-alias ipython='ipython3 --autocall=1'
 alias mailme='mailto --me'
+alias pyvenv='python3 -m venv --upgrade-deps venv'
+alias ipython='ipython3 --autocall=1 --pprint'
 
 
 ################################################################################
