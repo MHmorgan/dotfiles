@@ -246,6 +246,7 @@ then
 			$HOME/Documents/*(/)
 			$HOME/projects/*(/)
 			$HOME/projects/*/*(/)
+			/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/mhmorgan/homebrew-tap
 		)
 		local SEL=$(selector ${=mypaths} -af "$*")
 		[[ -n "$SEL" ]] || return
