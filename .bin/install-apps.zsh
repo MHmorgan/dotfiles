@@ -244,18 +244,26 @@ sudo apt-get install -q --yes ${=APT_PACKAGES} &> apt-get.log &&
 # ------------------------------------------------------------------------------
 # TODO - Install applications:
 #	* ExpressVPN
-#	* cargo{,-clippy,-fmt,-miri}
-#	* commode (https://github.com/MHmorgan/commode)
-#	* flatpack
 #	* gcloud
-#	* lazygit (https://github.com/jesseduffield/lazygit)
 #	* mypy (https://github.com/python/mypy)
-#	* rustup
-#	* selector (cargo install selector / github:mhmorgan/selector)
-#	* starship (https://starship.rs/)
-#	* thefuck (https://github.com/nvbn/thefuck)
 #	* Vundle.vim
 #
 
+# TODO: Install homebrew
+# 1	Install homebrew through default script
+# 2 Install gcc
+# 3 Add brew tap mhmorgan/tap
+# 4 Install homebrew apps:
+# 	- commode
+# 	- selector
+# 	- cowsay
+# 	- neofetch
+# 	- python
+# 	- rust
+# 	- lazygit
+# 	- starship
+# 	- neovim
+# 	- thefuck
+# 	- fortune
 
 
