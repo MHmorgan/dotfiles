@@ -218,6 +218,7 @@ function mahi {
 if type selector &>/dev/null
 then
 	function goto {
+		setopt NULL_GLOB
 		mypaths=(
 			$HOME/{Documents,scripts,lib,projects,cosmic}
 			$HOME/projects/*(/)
@@ -239,6 +240,7 @@ then
 				mypaths+=(${TMP#$VC_WORKSPACE/})
 			done
 		fi
+		unsetopt NULL_GLOB
 		local SEL=$(selector ${=mypaths} -af "$*")
 		[[ -n "$SEL" ]] || return
 		#
