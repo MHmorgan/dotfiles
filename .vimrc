@@ -27,6 +27,8 @@ set path+=**
 
 set modeline
 
+set foldmethod=marker
+
 autocmd Filetype c setlocal ts=4 sw=4 expandtab
 autocmd Filetype dart setlocal ts=2 sw=2 expandtab
 autocmd Filetype m4 setlocal ts=4 sw=4 expandtab
