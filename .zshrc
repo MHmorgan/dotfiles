@@ -315,6 +315,10 @@ function backup {
 	cp -uvpr $src $src~
 }
 
+
+#
+# List or browse git aliases defined by the oh-my-zsh plugin
+#
 function gitaliases {
 	local file=$HOME/.oh-my-zsh/plugins/git/README.md
 	local command='
