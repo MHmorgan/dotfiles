@@ -340,6 +340,15 @@ function gitaliases {
 }
 
 
+#
+# Fix annoying module issues
+#
+function modfix {
+	module unload misctools/anaconda misctools/git
+	module load misctools/git/2.19.1 misctools/anaconda/3-2020.07
+}
+
+
 ################################################################################
 #                                                                              #
 # Dotfiles
