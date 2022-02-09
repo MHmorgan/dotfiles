@@ -61,6 +61,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
@@ -72,7 +73,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Must be set after plugins are loaded
-"colorscheme nord
+colorscheme nord
+"colorscheme dracula
 
 " ------------------------------------------------------------------------------
 " Cheatsheet
