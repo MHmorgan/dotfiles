@@ -121,18 +121,21 @@ function goinstall() {
 export PATH="$PATH:/usr/lib/postgresql/13/bin"
 
 #
-# Homebrew variable setup
+# Homebrew setup - differs between MacOS and Linux
 #
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-#
-# Python homebrew setup
-#
-PYTHON_VERSION='3.10'
-export PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/bin:$PATH"
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/include"
-export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib/pkgconfig"
+if [[ ! "$OSTYPE" =~ darwin ]]; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	
+	PYTHON_VERSION='3.10'
+	export PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/bin:$PATH"
+	export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib"
+	export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/include"
+	export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@${PYTHON_VERSION}/lib/pkgconfig"
+else
+	export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+	export LDFLAGS="-L/usr/local/opt/python@3.10/lib"
+	export PKG_CONFIG_PATH="/usr/local/opt/python@3.10/lib/pkgconfig"
+fi
 
 
 eval "$(starship init zsh)"
