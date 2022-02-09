@@ -139,6 +139,7 @@ alias less="less -r"
 if type nvim &>/dev/null
 then
 	alias n="nvim"
+	alias ns="nvim -S"
 fi
 
 alias lg='lazygit'
