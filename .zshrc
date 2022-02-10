@@ -210,7 +210,6 @@ then
 			$HOME/{Documents,Downloads,projects,scripts,lib}
 			$HOME/Documents/*(/)
 			$HOME/projects/*(/)
-			$HOME/projects/*/*(/)
 			/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/mhmorgan/homebrew-tap
 		)
 		local SEL=$(selector ${=mypaths} -af "$*")
