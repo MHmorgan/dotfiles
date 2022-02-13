@@ -100,6 +100,7 @@ APPS=(
 	'pandoc'
 	'gcc'
 	'zsh-autosuggestions'
+	'ipython'
 	'mhmorgan/commode'
 	'mhmorgan/selector'
 )
