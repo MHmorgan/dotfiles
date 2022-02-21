@@ -43,7 +43,7 @@ export EDITOR='vim'
 #                                                                              #
 ################################################################################
 
-export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/scripts"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:/usr/lib/dart/bin:$HOME/flutter/bin:$HOME/Documents/scripts"
 
 #
 # Cargo bin
@@ -207,7 +207,7 @@ if type selector &>/dev/null
 then
 	function goto {
 		mypaths=(
-			$HOME/{Documents,Downloads,projects,scripts,lib}
+			$HOME/{Documents{,scripts},Downloads,projects,lib}
 			$HOME/Documents/*(/)
 			$HOME/projects/*(/)
 			/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/mhmorgan/homebrew-tap
