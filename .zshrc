@@ -223,7 +223,7 @@ then
 		mypaths=(
 			$HOME/{Documents,scripts,lib,projects,cosmic}
 			$HOME/projects/*(/)
-			/pro/*/work/mahi
+			/{projects01,pro}/*/work/mahi
 			/deliverables/*/digital/ApplicationMcu
 			/datastore01/jenkins01/node-simsrv*/workspace/Lilium/AppMcu_SYN/lastSuccessfulBuild*
 		)
@@ -233,9 +233,11 @@ then
 		if [[ -n "$VC_WORKSPACE" ]]
 		then
 			for TMP in $(echo \
-				$VC_WORKSPACE/products/*/*/hdn/ApplicationMcu/{syn,lec,vclp} \
-				$VC_WORKSPACE/products/*/*/tools/cosmic/*(/) \
+				$VC_WORKSPACE/products/*/*/hdn/ApplicationMcu/{syn,lec,vclp,tim} \
 				$VC_WORKSPACE/products/*/*/abc \
+				$VC_WORKSPACE/hardmacros/dhm/*/*/{abc,syn,lec,vclp,tim} \
+				$VC_WORKSPACE/hardmacros/dhm/*/*/tools/{rm_pt,modulefiles,cosmic/*} \
+				$VC_WORKSPACE/products/*/*/tools/{rm_pt,modulefiles,cosmic/*} \
 				$VC_WORKSPACE/platforms/*/blocks/ApplicationMcu/{dft,upf})
 			do
 				mypaths+=(${TMP#$VC_WORKSPACE/})
