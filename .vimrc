@@ -33,6 +33,7 @@ autocmd Filetype c setlocal ts=4 sw=4 expandtab
 autocmd Filetype dart setlocal ts=2 sw=2 expandtab
 autocmd Filetype m4 setlocal ts=4 sw=4 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
+autocmd Filetype perl setlocal ts=4 sw=4 expandtab
 autocmd Filetype tcl setlocal ts=2 sw=2 expandtab
 autocmd Filetype xml setlocal ts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
