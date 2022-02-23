@@ -67,7 +67,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'arcticicestudio/nord-vim'
 
 " All of your Plugins must be added before the following line
